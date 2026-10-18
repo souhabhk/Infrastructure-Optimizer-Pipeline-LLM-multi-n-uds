@@ -1,0 +1,19 @@
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+scripts/
+tests/__pycache__/
+
+# secrets
+.env
+
+# systeme
+Thumbs.db
+.DS_Store
+

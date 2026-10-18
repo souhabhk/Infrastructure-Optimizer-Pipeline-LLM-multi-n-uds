@@ -1,0 +1,262 @@
+{
+  "timestamp": "2026-10-15T16:10:59.146292Z",
+  "insights": {
+    "average_latency_ms": 156.02,
+    "max_cpu_usage": 99.0,
+    "max_memory_usage": 92.0,
+    "error_rate": 0.0316,
+    "uptime_seconds": 1258200
+  },
+  "anomalies": [
+    {
+      "metric": "cpu_usage",
+      "value": 99.0,
+      "threshold": 85.0,
+      "severity": "high",
+      "description": "cpu_usage over threshold in 57 of 500 samples; peak 99% at 2023-10-02T13:00:00Z."
+    },
+    {
+      "metric": "disk_usage",
+      "value": 97.0,
+      "threshold": 85.0,
+      "severity": "high",
+      "description": "disk_usage over threshold in 61 of 500 samples; peak 97% at 2023-10-05T21:00:00Z."
+    },
+    {
+      "metric": "error_rate",
+      "value": 0.13,
+      "threshold": 0.1,
+      "severity": "high",
+      "description": "error_rate over threshold in 65 of 500 samples; peak 0.13 at 2023-10-02T18:00:00Z."
+    },
+    {
+      "metric": "io_wait",
+      "value": 14.0,
+      "threshold": 12.0,
+      "severity": "high",
+      "description": "io_wait over threshold in 49 of 500 samples; peak 14% at 2023-10-01T22:00:00Z."
+    },
+    {
+      "metric": "latency_ms",
+      "value": 384.0,
+      "threshold": 300.0,
+      "severity": "high",
+      "description": "latency_ms over threshold in 76 of 500 samples; peak 384ms at 2023-10-03T14:00:00Z."
+    },
+    {
+      "metric": "memory_usage",
+      "value": 92.0,
+      "threshold": 85.0,
+      "severity": "high",
+      "description": "memory_usage over threshold in 60 of 500 samples; peak 92% at 2023-10-02T13:00:00Z."
+    },
+    {
+      "metric": "temperature_celsius",
+      "value": 89.0,
+      "threshold": 80.0,
+      "severity": "high",
+      "description": "temperature_celsius over threshold in 61 of 500 samples; peak 89°C at 2023-10-03T14:00:00Z."
+    }
+  ],
+  "predictive_analysis": {
+    "analysis_window": {
+      "start": "2023-10-01T12:00:00Z",
+      "end": "2023-10-10T23:30:00Z",
+      "record_count": 1440
+    },
+    "forecast_window": {
+      "start": "2023-10-10T23:30:00Z",
+      "end": "2023-10-11T23:30:00Z",
+      "horizon_hours": 24
+    },
+    "data_quality": {
+      "status": "sufficient",
+      "limitations": []
+    },
+    "summary": "L'analyse des données historiques révèle des tendances de charge fluctuantes avec des pics d'utilisation des ressources, en particulier en ce qui concerne l'utilisation du CPU et la latence. Les services de base de données et de passerelle API montrent des états dégradés à plusieurs reprises, indiquant une pression sur les ressources.",
+    "trends": [
+      {
+        "id": "trend-001",
+        "metrics": [
+          "cpu_usage",
+          "latency_ms"
+        ],
+        "pattern": "recurring_peak",
+        "evidence": [
+          {
+            "timestamp": "2023-10-10T11:00:00Z",
+            "field": "cpu_usage",
+            "value": 99.0
+          },
+          {
+            "timestamp": "2023-10-10T10:00:00Z",
+            "field": "cpu_usage",
+            "value": 90.0
+          },
+          {
+            "timestamp": "2023-10-10T01:00:00Z",
+            "field": "cpu_usage",
+            "value": 97.0
+          },
+          {
+            "timestamp": "2023-10-09T20:00:00Z",
+            "field": "cpu_usage",
+            "value": 95.0
+          },
+          {
+            "timestamp": "2023-10-09T19:00:00Z",
+            "field": "cpu_usage",
+            "value": 96.0
+          }
+        ],
+        "interpretation": "Des pics d'utilisation du CPU à 90% ou plus ont été observés à plusieurs reprises, indiquant une pression sur les ressources.",
+        "confidence": "high",
+        "confidence_reason": "Les pics d'utilisation du CPU sont soutenus par plusieurs observations dans les données."
+      },
+      {
+        "id": "trend-002",
+        "metrics": [
+          "latency_ms"
+        ],
+        "pattern": "increasing",
+        "evidence": [
+          {
+            "timestamp": "2023-10-10T11:00:00Z",
+            "field": "latency_ms",
+            "value": 383.0
+          },
+          {
+            "timestamp": "2023-10-10T10:00:00Z",
+            "field": "latency_ms",
+            "value": 377.0
+          },
+          {
+            "timestamp": "2023-10-09T20:00:00Z",
+            "field": "latency_ms",
+            "value": 363.0
+          },
+          {
+            "timestamp": "2023-10-09T19:00:00Z",
+            "field": "latency_ms",
+            "value": 367.0
+          }
+        ],
+        "interpretation": "La latence a montré une tendance à la hausse, atteignant des valeurs élevées lors des pics d'utilisation du CPU.",
+        "confidence": "medium",
+        "confidence_reason": "Bien que la latence ait augmenté, il n'y a pas suffisamment de données pour établir une tendance claire."
+      }
+    ],
+    "risks": [
+      {
+        "id": "risk-001",
+        "type": "resource_overload",
+        "target": "CPU",
+        "assessment": "elevated",
+        "severity": "high",
+        "expected_window": "2023-10-11T00:00:00Z",
+        "supporting_trend_ids": [
+          "trend-001"
+        ],
+        "reasoning": "L'utilisation du CPU a atteint des niveaux critiques à plusieurs reprises, ce qui pourrait entraîner une surcharge des ressources.",
+        "confidence": "high",
+        "confidence_reason": "Les données historiques montrent des pics d'utilisation du CPU à 90% ou plus."
+      },
+      {
+        "id": "risk-002",
+        "type": "service_degradation",
+        "target": "API Gateway",
+        "assessment": "elevated",
+        "severity": "medium",
+        "expected_window": "2023-10-11T00:00:00Z",
+        "supporting_trend_ids": [
+          "trend-002"
+        ],
+        "reasoning": "L'état dégradé du service API a été observé à plusieurs reprises, en corrélation avec des pics d'utilisation des ressources.",
+        "confidence": "medium",
+        "confidence_reason": "Les états dégradés sont récurrents mais pas systématiques."
+      }
+    ],
+    "preventive_actions": [
+      {
+        "risk_ids": [
+          "risk-001"
+        ],
+        "priority": "high",
+        "category": "immediate_mitigation",
+        "action": "Surveiller l'utilisation du CPU et envisager d'augmenter les ressources ou d'optimiser les processus.",
+        "expected_benefit": "Réduire le risque de surcharge du CPU et améliorer la réactivité des services.",
+        "additional_data_needed": [
+          "historical CPU usage patterns",
+          "application performance metrics"
+        ]
+      },
+      {
+        "risk_ids": [
+          "risk-002"
+        ],
+        "priority": "medium",
+        "category": "capacity_planning",
+        "action": "Évaluer la capacité de l'API Gateway et envisager une mise à l'échelle en fonction des tendances d'utilisation.",
+        "expected_benefit": "Prévenir les dégradations de service futures en assurant une capacité suffisante.",
+        "additional_data_needed": [
+          "API Gateway traffic patterns",
+          "latency metrics"
+        ]
+      }
+    ]
+  },
+  "recommendations": [
+    {
+      "id": "rec-001",
+      "action": "Investigate and reschedule or throttle the workload causing peak resource usage",
+      "target": "compute cluster",
+      "parameters": {
+        "peak_timestamps": [
+          "2023-10-02T13:00:00Z",
+          "2023-10-05T21:00:00Z",
+          "2023-10-02T18:00:00Z",
+          "2023-10-01T22:00:00Z",
+          "2023-10-03T14:00:00Z"
+        ]
+      },
+      "benefit_estimate": "Reduces simultaneous resource saturation, improving overall system stability."
+    },
+    {
+      "id": "rec-002",
+      "action": "Investigate recurring outages of 'database' and add HA/failover",
+      "target": "database",
+      "parameters": {
+        "observed_state": "offline"
+      },
+      "benefit_estimate": "Eliminates downtime of database."
+    },
+    {
+      "id": "rec-003",
+      "action": "Diagnose degradation of 'api_gateway' and scale/optimise it",
+      "target": "api_gateway",
+      "parameters": {
+        "observed_state": "degraded"
+      },
+      "benefit_estimate": "Restores full performance of api_gateway."
+    },
+    {
+      "id": "rec-004",
+      "action": "Diagnose degradation of 'cache' and scale/optimise it",
+      "target": "cache",
+      "parameters": {
+        "observed_state": "degraded"
+      },
+      "benefit_estimate": "Restores full performance of cache."
+    }
+  ],
+  "service_status_summary": {
+    "online": [],
+    "degraded": [
+      "api_gateway",
+      "cache"
+    ],
+    "offline": [
+      "database"
+    ]
+  }
+}
